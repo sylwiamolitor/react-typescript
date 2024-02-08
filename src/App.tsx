@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+let name:string;
+name = "My app";
+let version:number;
+let isComplete: boolean = false;
+let versions: number[];
+
+let role:[number, string];
+role = [0, "admin"];
+
+interface Person {
+  name:string;
+  age?:number;
+}
+
+
+interface animal {
+  name: "Kitty";
+  age: 25;
+};
+
+interface specialAnimal extends animal {
+  food:string;
+};
+
+
+
+let people:Person[];
+let unionExample: number | string;
+let voidFunction: (name:string) => never;
+let unknownVariable: unknown;
+
+function printName(name: string){
+  console.log(name);
+}
+
+printName("MyName");
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App">In progress :)</div>
 }
 
 export default App;
