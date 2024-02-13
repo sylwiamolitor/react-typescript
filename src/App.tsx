@@ -1,4 +1,7 @@
 import './App.css';
+import InputField from './components/InputField';
+import {useState} from "react";
+import {Todo} from "./model";
 
 let name:string;
 name = "My app";
@@ -15,12 +18,12 @@ interface Person {
 }
 
 
-interface animal {
+interface Animal {
   name: "Kitty";
   age: 25;
 };
 
-interface specialAnimal extends animal {
+interface SpecialAnimal extends Animal {
   food:string;
 };
 
@@ -31,14 +34,36 @@ let unionExample: number | string;
 let voidFunction: (name:string) => never;
 let unknownVariable: unknown;
 
+
+
 function printName(name: string){
   console.log(name);
 }
 
 printName("MyName");
 
-function App() {
-  return <div className="App">In progress :)</div>
+const App: React.FC = () => {
+
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleAdd = (e : React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+
+    if(todo)
+    {
+      setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
+      setTodo("");
+    }
+    
+  }
+
+  console.log(todo);
+
+  return <div className="App">
+  <span className="heading">List App</span>
+  <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+  In progress :)</div>
 }
 
 export default App;
