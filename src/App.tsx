@@ -2,6 +2,7 @@ import './App.css';
 import InputField from './components/InputField';
 import {useState} from "react";
 import {Todo} from "./model";
+import TodoList from './components/TodoList';
 
 let name:string;
 name = "My app";
@@ -55,14 +56,19 @@ const App: React.FC = () => {
       setTodos([...todos, {id: Date.now(), todo, isDone: false}]);
       setTodo("");
     }
-    
-  }
+  };
 
   console.log(todo);
+  console.log(todos);
+
 
   return <div className="App">
   <span className="heading">List App</span>
   <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+  {todos.map((t) => (
+    <li>{t.todo}</li>
+  ))}
+  <TodoList todos={todos} setTodos={setTodos}></TodoList>
   In progress :)</div>
 }
 
