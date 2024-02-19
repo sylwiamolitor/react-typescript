@@ -3,6 +3,7 @@ import InputField from './components/InputField';
 import {useState} from "react";
 import {Todo} from "./model";
 import TodoList from './components/TodoList';
+import {DragDropContext} from 'react-beautiful-dnd';
 
 let name:string;
 name = "My app";
@@ -47,6 +48,7 @@ const App: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [completed, setCompleted] = useState<Todo[]>([]);
 
   const handleAdd = (e : React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -62,14 +64,17 @@ const App: React.FC = () => {
   console.log(todos);
 
 
-  return <div className="App">
-  <span className="heading">List App</span>
-  <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
-  {todos.map((t) => (
-    <li>{t.todo}</li>
-  ))}
-  <TodoList todos={todos} setTodos={setTodos}></TodoList>
-  In progress :)</div>
-}
+  return (
+  <DragDropContext onDragEnd={(result, provided) => {
+    // TODO: implement onDragEnd
+  }}>
+    <div className="App">
+      <span className="heading">List App</span>
+      <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+      <TodoList todos={todos} setTodos={setTodos} completed={completed} setCompleted={setCompleted}></TodoList>
+      In progress :)
+    </div>
+  </DragDropContext>);
+};
 
 export default App;
