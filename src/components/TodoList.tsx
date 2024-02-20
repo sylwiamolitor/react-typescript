@@ -13,22 +13,25 @@ interface Props{
 const TodoList : React.FunctionComponent<Props> =  ({todos, setTodos, completed, setCompleted} : Props) =>{
     return <div className="container">
     <Droppable droppableId="TodosList" >
-    {(provided) => (
-    <div className="todos" ref={provided.innerRef} {...provided.droppableProps}>        
+    {(provided, snapshot) => (
+    <div className={'todos ${snapshot.isDraggingOver? "dragactive" : ""}'} ref={provided.innerRef} {...provided.droppableProps}>        
         <span className="todos__heading">            Active tasks        </span>
         {todos.map((todo, index) => (
             <SingleTodo index={index} todo={todo} key={todo.id} todos={completed} setTodos={setCompleted}/>
         ))}
+        {provided.placeholder}
     </div>
     )}
     </Droppable>
-    <Droppable droppableId="TodosRemoveList">
-    {(provided) => (
-        <div className="todos remove" ref={provided.innerRef} {...provided.droppableProps}>
+    <Droppable droppableId="TodosRemove">
+    {(provided, snapshot) => (
+        <div className={'todos remove ${snapshot.isDraggingOver? "dragcomplete" : ""}'}
+         ref={provided.innerRef} {...provided.droppableProps}>
         <span className="todos__heading">            Completed tasks        </span>
-            {todos.map((todo, index) => (
+            {completed.map((todo, index) => (
                 <SingleTodo index={index} todo={todo} key={todo.id} todos={completed} setTodos={setCompleted}/>
             ))}
+        {provided.placeholder}
         </div>
     )}  
     </Droppable>
