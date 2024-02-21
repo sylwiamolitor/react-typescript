@@ -6,18 +6,18 @@ import { Droppable } from "react-beautiful-dnd";
 interface Props{
     todos:Todo[];
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-    completed: Todo[];
-    setCompleted: React.Dispatch<React.SetStateAction<Todo[]>>;
+    CompletedTodos: Todo[];
+    setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const TodoList : React.FunctionComponent<Props> =  ({todos, setTodos, completed, setCompleted} : Props) =>{
+const TodoList : React.FunctionComponent<Props> =  ({todos, setTodos, CompletedTodos, setCompletedTodos}) =>{
     return <div className="container">
-    <Droppable droppableId="TodosList" >
+    <Droppable droppableId="TodosList">
     {(provided, snapshot) => (
-    <div className={'todos ${snapshot.isDraggingOver? "dragactive" : ""}'} ref={provided.innerRef} {...provided.droppableProps}>        
+    <div className={`todos ${snapshot.isDraggingOver? "dragactive" : ""}`} ref={provided.innerRef} {...provided.droppableProps}>        
         <span className="todos__heading">            Active tasks        </span>
-        {todos.map((todo, index) => (
-            <SingleTodo index={index} todo={todo} key={todo.id} todos={completed} setTodos={setCompleted}/>
+        {todos?.map((todo, index) => (
+            <SingleTodo index={index} todo={todo} key={todo.id} todos={todos} setTodos={setTodos}/>
         ))}
         {provided.placeholder}
     </div>
@@ -25,11 +25,11 @@ const TodoList : React.FunctionComponent<Props> =  ({todos, setTodos, completed,
     </Droppable>
     <Droppable droppableId="TodosRemove">
     {(provided, snapshot) => (
-        <div className={'todos remove ${snapshot.isDraggingOver? "dragcomplete" : ""}'}
+        <div className={`todos ${snapshot.isDraggingOver? "dragcomplete" : "remove"}`}
          ref={provided.innerRef} {...provided.droppableProps}>
         <span className="todos__heading">            Completed tasks        </span>
-            {completed.map((todo, index) => (
-                <SingleTodo index={index} todo={todo} key={todo.id} todos={completed} setTodos={setCompleted}/>
+            {CompletedTodos?.map((todo, index) => (
+                <SingleTodo index={index} todo={todo} key={todo.id} todos={CompletedTodos} setTodos={setCompletedTodos}/>
             ))}
         {provided.placeholder}
         </div>

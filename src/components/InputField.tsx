@@ -17,7 +17,7 @@ const inputRef = useRef<HTMLInputElement>(null);
         }}>
     <input 
     ref={inputRef}
-    type='input' 
+    type='text' 
     placeholder='Enter a task' 
     className='input__box' 
     value={todo} 

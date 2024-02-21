@@ -45,7 +45,7 @@ useEffect(() => {
 return <Draggable draggableId={todo.id.toString()} index={index}>
     {
         (provided, snapshot) => ( <form 
-            className={'todos__single ${snapshot.isDragging? "drag" : ""}' }
+            className={`todos__single ${snapshot.isDragging? "drag" : ""}` }
         onSubmit={e => handleEdit(e, todo.id)}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
@@ -64,8 +64,8 @@ return <Draggable draggableId={todo.id.toString()} index={index}>
              <span className="icon" onClick={() => { if (!edit && !todo.isDone){
                  setEdit(!edit);
              }}}> <AiFillEdit/></span>
-             <span className="icon"><AiFillDelete onClick={()=>handleDelete(todo.id)}/></span>
-             <span className="icon"><MdDone onClick={()=>handleDone(todo.id)}/></span>
+             <span className="icon" onClick={()=>handleDelete(todo.id)}><AiFillDelete/></span>
+             <span className="icon" onClick={()=>handleDone(todo.id)}><MdDone/></span>
          </div>
      </form>)
     }
