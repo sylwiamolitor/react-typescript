@@ -7,7 +7,7 @@ interface Props{
     handleAdd: (e : React.FormEvent<EventTarget>) => void;
 }
 
-const InputField: React.FC<Props> = ({todo, setTodo, handleAdd}) => {
+const InputField: React.FunctionComponent<Props> = ({todo, setTodo, handleAdd}) => {
 const inputRef = useRef<HTMLInputElement>(null);
 
     return(

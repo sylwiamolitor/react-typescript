@@ -44,7 +44,7 @@ function printName(name: string){
 
 printName("MyName");
 
-const App: React.FC = () => {
+const App: React.FunctionComponent = () => {
 
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
