@@ -49,7 +49,7 @@ const App: React.FunctionComponent = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
   const [CompletedTodos, setCompletedTodos] = useState<Todo[]>([]);
-
+  const now = new Date();
   const handleAdd = (e : React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
@@ -91,6 +91,8 @@ const App: React.FunctionComponent = () => {
   <DragDropContext onDragEnd={onDragEnd}>
     <div className="App">
       <span className="heading">List App</span>
+      <div></div>
+      <span className="date">Today is {now.toLocaleDateString()}</span>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
       <TodoList todos={todos} setTodos={setTodos} CompletedTodos={CompletedTodos} setCompletedTodos={setCompletedTodos}/>
     </div>

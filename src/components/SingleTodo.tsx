@@ -1,6 +1,6 @@
 import "./styles.css"
 import {Todo} from "../model";
-import {AiFillEdit, AiFillDelete} from "react-icons/ai";
+import {AiFillEdit, AiFillDelete} from 'react-icons/ai';
 import {MdDone} from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
 import { Draggable } from "react-beautiful-dnd";
