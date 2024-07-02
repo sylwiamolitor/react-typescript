@@ -16,7 +16,7 @@ Application for organizing the fulfillment of duties.
 The application allows the user to create a list of uncompleted tasks. The user can then delete them or promote them to a completed category by dragging and dropping. It is possible to change the name of the task or delete it.
 
 ## Technologies Used
-React and Typescript.
+React, Typescript, Docker.
 
 ## Features
 * Addition of a task
@@ -30,17 +30,18 @@ React and Typescript.
 
 
 ## Setup
-Use command `cd my-react-app` to move to the my-react-app directory and `npm start` to start the application. The application will be at the localhost:3000. If the application shows an error then run `npm install` before `npm start`.
+Withour docker: use command `cd react-typescript` to move to the react-typescript directory and `npm start` to start the application. The application will be at the localhost:3000. If the application shows an error then run `npm install` before `npm start`.
+Using docker: use command `cd react-typescript` to move to the react-typescript directory and `npm run build` to build the application, then `docker-compose up` to start. The application will be at the localhost:3000. The application can be stopped with the command `docker-compose down`.
 
 
 ## Usage
 Enter a task name and click "GO" to add it. Click the trash icon to delete it. Click the edit icon to edit the task title. Click the check mark to cross out the task. Drag and drop a task to change its status.
 
 ## Project Status
-Complete
+Complete, dockerized.
 
 
 ## Room for Improvement
-Dockerize app.
+Add other modules.
 
 
