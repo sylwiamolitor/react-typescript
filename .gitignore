@@ -1,4 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
@@ -21,3 +20,99 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Ww][Ii][Nn]64/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core build output
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# IIS
+_IISExpress/
+.vs/
+*.vspscc
+*.vssscc
+
+# Generated files
+*.dll
+*.exe
+*.exe.config
+*.dll.config
+*.pdb
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio cache
+.vscode/
+.vs/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+# npm, yarn, pnpm (if you have SPA frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-store/
+.pnpm-debug.log
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Publish output
+publish/
+dist/
+wwwroot/dist/
+
+# Secret files (important)
+appsettings.Development.json
+appsettings.Local.json
+
+# EF Core migrations cache
+*.dbmdl
+
+# JetBrains Rider extra
+.idea/
+*.sln.iml
