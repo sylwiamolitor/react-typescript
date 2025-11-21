@@ -38,6 +38,13 @@ using (var scope = app.Services.CreateScope())
         if (db.Database.CanConnect())
         {
             db.Database.EnsureCreated();
+            if (!db.TodoItems.Any())
+            {
+                db.TodoItems.AddRange(new TodoItem { Title = "Welcome task", IsDone = false },
+                                      new TodoItem { Title = "Sample completed", IsDone = true });
+                db.SaveChanges();
+                logger.LogInformation("Seeded initial TodoItems.");
+            }
         }
         else
         {

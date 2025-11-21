@@ -9,11 +9,20 @@ namespace backend.Data
         }
 
         public DbSet<TestEntity> Tests { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 
     public class TestEntity
     {
         public int Id { get; set; }
         public string Message { get; set; } = string.Empty;
+    }
+
+    public class TodoItem
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public bool IsDone { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
