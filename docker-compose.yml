@@ -4,9 +4,11 @@ services:
 
   frontend:
     container_name: react
-    build: ./src
+    build:
+      context: ./frontend
+      dockerfile: ./src/Dockerfile
     volumes:
-      - '.:/react-typescript'
+      - '.:/frontend/react-typescript'
     ports:
       - "3000:3000"
     environment:
@@ -28,9 +30,10 @@ services:
       - appnet
     depends_on:
       - postgres
+
   postgres:
-    image: postgres:16
-    container_name: postgres
+    image: postgres:18
+    container_name: postgres_react
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -39,7 +42,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/18/docker
     networks:
       - appnet
 

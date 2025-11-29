@@ -1,26 +1,4 @@
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
+# ===== .NET / Visual Studio =====
 # User-specific files
 *.rsuser
 *.suo
@@ -28,48 +6,51 @@ yarn-error.log*
 *.userosscache
 *.sln.docstates
 
-# Mono Auto Generated Files
-mono_crash.*
-
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
+[Dd]ebug*/
+[Rr]elease*/
 x64/
 x86/
-[Ww][Ii][Nn]32/
-[Ww][Ii][Nn]64/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
-[Ll]ogs/
+artifacts/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
-# .NET Core build output
+# .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts/
+.nuget/
+packages/
 
-# IIS
-_IISExpress/
-.vs/
-*.vspscc
-*.vssscc
+# Publish output
+publish/
+wwwroot/dist/
+dist/
 
-# Generated files
+# EF Core migrations cache
+*.dbmdl
+
+# Logs
+*.log
+[Ll]ogs/
+
+# Runtime
 *.dll
 *.exe
 *.exe.config
 *.dll.config
 *.pdb
 
-# Rider
+# IIS Express
+_IISExpress/
+.vs/
+
+# Rider/IDE
 .idea/
 *.sln.iml
 
@@ -77,42 +58,62 @@ _IISExpress/
 .vscode/
 .vs/
 
-# NuGet
-*.nupkg
-*.snupkg
-packages/
-*.nuget.props
-*.nuget.targets
-.nuget/
-
-# npm, yarn, pnpm (if you have SPA frontend)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-.pnpm-store/
-.pnpm-debug.log
-
-# Logs
-*.log
-
 # OS
 .DS_Store
 Thumbs.db
 
-# Publish output
-publish/
-dist/
-wwwroot/dist/
+# ===== Node / React / TypeScript =====
+# dependencies
+node_modules/
+frontend/node_modules/
 
-# Secret files (important)
+# build
+/build
+/frontend/build
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# lock files (if you use package manager lock files, you may want to keep them)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# dotenv files
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript
+*.tsbuildinfo
+
+# coverage
+/coverage
+
+# misc
+.pnp
+.pnp.js
+
+# ===== Containers / Devtools =====
+# Docker
+docker-compose.override.yml
+Dockerfile.dev
+
+# Local temp
+*.tmp
+
+# ===== Secrets / config =====
+# Keep environment-specific appsettings out of git
 appsettings.Development.json
 appsettings.Local.json
 
-# EF Core migrations cache
-*.dbmdl
+# Developer-specific
+*.rsuser
 
-# JetBrains Rider extra
-.idea/
-*.sln.iml
+# End of file
