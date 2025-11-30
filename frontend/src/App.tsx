@@ -4,46 +4,6 @@ import { Todo } from './model';
 import React, { useEffect, useState } from 'react';
 import TodoList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import TodosTable from './components/TodosTable';
-
-let name:string;
-name = "My app";
-let version:number;
-let isComplete: boolean = false;
-let versions: number[];
-
-let role:[number, string];
-role = [0, "admin"];
-
-interface Person {
-  name:string;
-  age?:number;
-}
-
-
-interface Animal {
-    name: "Kitty";
-    age: 25;
-};
-
-interface SpecialAnimal extends Animal {
-  food:string;
-};
-
-
-
-let people:Person[];
-let unionExample: number | string;
-let voidFunction: (name:string) => never;
-let unknownVariable: unknown;
-
-
-
-function printName(name: string){
-    console.log(name);
-}
-
-printName("MyName");
 
 const App: React.FunctionComponent = () => {
   const [todo, setTodo] = useState<string>('');
@@ -132,7 +92,6 @@ const App: React.FunctionComponent = () => {
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList todos={todos} setTodos={setTodos} CompletedTodos={completedTodos} setCompletedTodos={setCompletedTodos} />
         <hr />
-        <TodosTable />
       </div>
     </DragDropContext>
   );
