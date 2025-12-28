@@ -33,27 +33,55 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-    try
+
+    var maxRetries = 30;
+    var delayMs = 1000;
+    var retries = 0;
+    var migrated = false;
+
+    while (retries < maxRetries && !migrated)
     {
-        if (db.Database.CanConnect())
+        try
         {
-            db.Database.EnsureCreated();
-            if (!db.TodoItems.Any())
+            logger.LogInformation("Attempting to apply EF Core migrations (attempt {Attempt}/{Max})", retries + 1, maxRetries);
+            db.Database.Migrate();
+            migrated = true;
+            logger.LogInformation("Migrations applied successfully.");
+        }
+        catch (Exception ex)
+        {
+            retries++;
+            logger.LogWarning(ex, "Failed to apply migrations on attempt {Attempt}/{Max}. Retrying in {Delay}ms", retries, maxRetries, delayMs);
+            try
             {
-                db.TodoItems.AddRange(new TodoItem { Title = "Welcome task", IsDone = false },
-                                      new TodoItem { Title = "Sample completed", IsDone = true });
-                db.SaveChanges();
-                logger.LogInformation("Seeded initial TodoItems.");
+                System.Threading.Thread.Sleep(delayMs);
+            }
+            catch (Exception ex)
+            {
+                logger.Log(ex.Message);
             }
         }
-        else
+    }
+
+    if (!migrated)
+    {
+        logger.LogError("Could not apply migrations after {Max} attempts. Continuing without applying migrations.", maxRetries);
+    }
+
+    try
+    {
+        db.Database.EnsureCreated();
+        if (!db.TodoItems.Any())
         {
-            logger.LogWarning("Database is not reachable at startup. Host may be unavailable. Skipping EnsureCreated.");
+            db.TodoItems.AddRange(new TodoItem { Title = "Welcome task", IsDone = false },
+                                  new TodoItem { Title = "Sample completed", IsDone = true });
+            db.SaveChanges();
+            logger.LogInformation("Seeded initial TodoItems.");
         }
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "An error occurred while initializing the database at startup. Continuing without DB initialization.");
+        logger.LogError(ex, "An error occurred while seeding the database.");
     }
 }
 

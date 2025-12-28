@@ -45,6 +45,12 @@ services:
       - pgdata:/var/lib/postgresql/18/docker
     networks:
       - appnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME} || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
 
 networks:
   appnet:
