@@ -1,20 +1,14 @@
-# pull official base image
-FROM node:21-alpine
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
 
-# set working directory
-WORKDIR /react-typescript/
+FROM nginx:alpine
 
-# add `/react-typescript/node_modules/.bin` to $PATH
-ENV PATH /react-typescript/node_modules/.bin:$PATH
+COPY --from=build /app/build /usr/share/nginx/html
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# add app
-COPY . ./
 EXPOSE 3000
-# start app
-CMD ["npm", "start"]
