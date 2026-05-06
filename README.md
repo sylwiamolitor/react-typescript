@@ -31,28 +31,20 @@ This application lets a user create a list of tasks, edit titles, delete tasks, 
 ![Screenshot](https://github.com/sylwiamolitor/react-typescript/assets/43808701/74a465f5-8171-4523-b604-46dbd9aaf914)
 
 ## Setup
+Define the following environment variables in a `.env` file (you can use `.env.example` as a reference):
 
-Without Docker:
-1. Open a terminal and run:
-   ```bash
-   cd react-typescript
-   npm install
-   npm start
-   ```
-2. Open your browser and go to `http://localhost:3000`.
+- `DATABASE_HOST` — e.g. `postgres`
+- `DATABASE_PORT` — e.g. `5432`
+- `DATABASE_NAME` —  e.g. `postgres`
+- `DATABASE_USERNAME` — e.g. `postgres`
+- `DATABASE_PASSWORD` — e.g. `password`
 
-With Docker:
-1. Open a terminal and run:
-   ```bash
-   cd react-typescript
-   npm run build
-   docker-compose up
-   ```
-2. Open your browser and go to `http://localhost:3000`.
-3. To stop the application, run:
-   ```bash
-   docker-compose down
-   ```
+Ensure the database is accessible and credentials are correct.
+
+To build and start the services (run from the repository root):
+```bash
+docker compose --env-file .env up --build
+```
 
 ## Usage
 - To add a task, enter the task name in the input field and click the "GO" button.

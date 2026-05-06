@@ -1,4 +1,5 @@
 using backend.Data;
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,10 +19,28 @@ builder.Services.AddCors(options =>
             .AllowCredentials()
             .SetIsOriginAllowed(_ => true);
     });
-});
-var connectionString =
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? Environment.GetEnvironmentVariable("DATABASE_URL_2");
+}); 
+var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../../"));
+var envPath = Path.Combine(projectRoot, ".env");
+Env.Load(envPath);
+
+var hostVar = Environment.GetEnvironmentVariable("DATABASE_HOST");
+var portVar = Environment.GetEnvironmentVariable("DATABASE_PORT");
+var dbVar = Environment.GetEnvironmentVariable("DATABASE_NAME");
+var userVar = Environment.GetEnvironmentVariable("DATABASE_USERNAME");
+var passVar = Environment.GetEnvironmentVariable("DATABASE_PASSWORD");
+
+var connectionString = "";
+if (!string.IsNullOrWhiteSpace(hostVar) &&
+    !string.IsNullOrWhiteSpace(portVar) &&
+    !string.IsNullOrWhiteSpace(dbVar) &&
+    !string.IsNullOrWhiteSpace(userVar) &&
+    !string.IsNullOrWhiteSpace(passVar))
+{
+    connectionString = $"Host={hostVar};Port={portVar};Database={dbVar};Username={userVar};Password={passVar}";
+}
+else
+    throw new Exception("Set database credentials!");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString)
@@ -56,9 +75,9 @@ using (var scope = app.Services.CreateScope())
             {
                 System.Threading.Thread.Sleep(delayMs);
             }
-            catch (Exception ex)
+            catch (Exception ex2)
             {
-                logger.Log(ex.Message);
+                logger.Log(LogLevel.Error, ex2.Message);
             }
         }
     }
