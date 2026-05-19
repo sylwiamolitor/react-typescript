@@ -1,6 +1,6 @@
 import React from 'react';
-import "./styles.css"
-import {Todo} from "../model";
+import "../styles/styles.css"
+import {Todo} from "../types/model";
 import {AiFillEdit, AiFillDelete} from "react-icons/ai";
 import {MdDone} from "react-icons/md";
 import { useEffect, useState, useRef } from "react";

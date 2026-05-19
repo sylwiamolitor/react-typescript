@@ -1,6 +1,6 @@
-import './App.css';
+import './styles/App.css';
 import InputField from './components/InputField';
-import { Todo } from './model';
+import { Todo } from './types/model';
 import React, { useEffect, useState } from 'react';
 import TodoList from './components/TodoList';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';

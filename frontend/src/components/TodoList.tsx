@@ -1,5 +1,5 @@
-import "./styles.css"
-import {Todo} from "../model";
+import "../styles/styles.css"
+import {Todo} from "../types/model";
 import SingleTodo from "./SingleTodo";
 import { Droppable } from "react-beautiful-dnd";
 
