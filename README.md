@@ -28,7 +28,7 @@ This application lets a user create a list of tasks, edit titles, delete tasks, 
 - Drag and drop to change task status
 
 ## Screenshots
-![Screenshot](https://github.com/sylwiamolitor/react-typescript/assets/43808701/74a465f5-8171-4523-b604-46dbd9aaf914)
+![Screenshot](img.png)
 
 ## Setup
 Define the following environment variables in a `.env` file (you can use `.env.example` as a reference):
@@ -60,6 +60,5 @@ Complete, dockerized.
 - Add user authentication
 - Implement task due dates and reminders
 - Allow task categorization and filtering
-- Enhance the user interface and experience
 
 
